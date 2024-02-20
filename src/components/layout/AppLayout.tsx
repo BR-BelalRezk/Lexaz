@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
 import styled from "styled-components";
+import Container from "./Container";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -18,7 +19,9 @@ export default function AppLayout() {
         <Header />
         <Sidebar />
         <Main>
-          <Outlet />
+          <Container>
+            <Outlet />
+          </Container>
         </Main>
       </StyledAppLayout>
       <Footer />

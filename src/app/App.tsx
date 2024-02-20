@@ -11,10 +11,11 @@ import GlobalStyles from "../styles/GlobalStyles";
 import AppLayout from "../components/layout/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
 const querClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 100,
+      staleTime: 0,
     },
   },
 });
@@ -23,6 +24,22 @@ export default function App() {
     <QueryClientProvider client={querClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
+      <Toaster position="top-center" gutter={15} containerStyle={{margin:'10px'}} toastOptions={{
+        success:{
+          duration:5000
+        },
+        error:{
+          duration:5000
+        },
+        style:{
+          fontSize:"15px",
+          maxWidth:"500px",
+          padding:'15px 25px',
+          backgroundColor:'var(--color-gray-0)',
+          color:'var(--color-gray-700)',
+
+        }
+      }}/>
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>

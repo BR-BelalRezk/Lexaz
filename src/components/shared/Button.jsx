@@ -1,8 +1,4 @@
 import styled, { css } from "styled-components";
-type Props = {
-  size?: "small" | "medium" | "large";
-  variation?: "primary" | "secondary" | "danger";
-};
 
 const sizes = {
   small: css`
@@ -52,7 +48,7 @@ const variations = {
   `,
 };
 
-const Button = styled.button<Props>`
+const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);

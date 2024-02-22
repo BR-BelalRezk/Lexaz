@@ -10,7 +10,6 @@ import PageNotFound from "../pages/PageNotFound";
 import GlobalStyles from "../styles/GlobalStyles";
 import AppLayout from "../components/layout/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 const querClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +21,6 @@ const querClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={querClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
       <Toaster position="top-center" gutter={15} containerStyle={{margin:'10px'}} toastOptions={{
         success:{

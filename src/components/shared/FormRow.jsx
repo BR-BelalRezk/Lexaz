@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 const StyledFormRow = styled.div`
@@ -36,17 +36,7 @@ const Error = styled.span`
   font-size: 1.4rem;
   color: var(--color-red-700);
 `;
-export default function FormRow({
-  label,
-  error,
-  children,
-  id,
-}: {
-  error?: string;
-  label?: string;
-  id?: string;
-  children: ReactNode;
-}) {
+export default function FormRow({ label, error, children, id }) {
   return (
     <StyledFormRow>
       {label && <Label htmlFor={id}>{label}</Label>}

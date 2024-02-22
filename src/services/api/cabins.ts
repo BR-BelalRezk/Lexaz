@@ -1,4 +1,4 @@
-import { NEWCABIN } from "../../types/types";
+import { NEWCABINCreated } from "../../types/types";
 import supabase, { supabaseUrl } from "../supabase";
 export async function getCabins() {
   const { data, error } = await supabase.from("cabins").select("*");
@@ -18,10 +18,9 @@ export async function deleteCabin(id: number) {
   return data;
 }
 
-export async function createCabin(newCabin: NEWCABIN) {
+export async function createCabin(newCabin: NEWCABINCreated) {
   const imageName = `${Math.random()}-${newCabin.image.name}`.replace("/", "");
   const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
-  // https://xgimipnxyodjijyqissq.supabase.co/storage/v1/object/public/cabin-images/cabin-001.jpg
   const { data, error } = await supabase
     .from("cabins")
     .insert([{ ...newCabin, image: imagePath }])

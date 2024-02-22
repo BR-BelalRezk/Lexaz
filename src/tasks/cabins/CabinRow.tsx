@@ -65,15 +65,20 @@ export default function CabinRow({ cabin }: { cabin: CABIN }) {
     onError: (err) => toast.error(err.message),
   });
   return (
-    <TableRow role="row">
-      <Img src={image} alt={name} />
-      <Cabin>{name}</Cabin>
-      <div>Fits up to {maxCapacity} guests</div>
-      <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
-      <button onClick={() => mutate(cabinID)} disabled={isDeleting}>
-        Delete
-      </button>
-    </TableRow>
+    <>
+      <TableRow role="row">
+        <Img src={image} alt={name} />
+        <Cabin>{name}</Cabin>
+        <div>Fits up to {maxCapacity} guests</div>
+        <Price>{formatCurrency(regularPrice)}</Price>
+        <Discount>{formatCurrency(discount)}</Discount>
+        <div>
+          <button onClick={() => mutate(cabinID)} disabled={isDeleting}>
+            Delete
+          </button>
+        </div>
+      </TableRow>
+      {/* {showForm && <CreateCabinForm cabinToEdit={cabin} />} */}
+    </>
   );
 }

@@ -9,7 +9,7 @@ import FormRow from "../../components/shared/FormRow";
 import { useCreateCabin } from "../../hooks/useCreateCabin";
 import { useEditCabin } from "../../hooks/useEditCabin";
 
-export default function CreateCabinForm({ cabinToEdit = {} }) {
+export default function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { isCreating, createCabin } = useCreateCabin();
   const { editCabin, isEditing } = useEditCabin();
   const { id: editID, ...editValues } = cabinToEdit;
@@ -31,20 +31,24 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
       editCabin(
         { newCabinData: { ...data, image }, id: editID },
         {
-          onSuccess: () => reset(),
+          onSuccess: () => {
+            reset(), onCloseModal?.();
+          },
         }
       );
     } else {
       createCabin(
         { ...data, image: image },
         {
-          onSuccess: () => reset(),
+          onSuccess: () => {
+            reset(), onCloseModal?.();
+          },
         }
       );
     }
   }
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} type={onCloseModal ? "modal" : ""}>
       <FormRow
         id="name"
         label="Cabin name"
@@ -169,7 +173,12 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
       <FormRow>
         {/* type is an HTML attribute! */}
 
-        <Button variation="secondary" type="reset" disabled={isWorking}>
+        <Button
+          variation="secondary"
+          type="reset"
+          disabled={isWorking}
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </Button>
         <Button type="submit" disabled={isWorking}>

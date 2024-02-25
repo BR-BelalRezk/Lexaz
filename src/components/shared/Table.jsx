@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext } from "react";
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
 
@@ -11,7 +11,7 @@ const StyledTable = styled.div`
   overflow: hidden;
 `;
 
-const CommonRow = styled.div`
+const CommonRow = styled(motion.div)`
   display: grid;
   grid-template-columns: ${(props) => props.columns};
   column-gap: 2.4rem;
@@ -78,10 +78,24 @@ function Header({ children }) {
     </StyledHeader>
   );
 }
-function Row({ children }) {
+function Row({ children, delay }) {
   const { columns } = useContext(TableContext);
   return (
-    <StyledRow role="row" columns={columns}>
+    <StyledRow
+      role="row"
+      columns={columns}
+      initial={{ opacity: 0, y: -25 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: delay * 0.1 + 1,
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+        },
+      }}
+    >
       {children}
     </StyledRow>
   );

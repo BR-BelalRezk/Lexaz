@@ -37,7 +37,7 @@ const Discount = styled.div`
   color: var(--color-green-700);
 `;
 
-export default function CabinRow({ cabin }) {
+export default function CabinRow({ cabin, delay }) {
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { createCabin } = useCreateCabin();
   const { name, maxCapacity, regularPrice, discount, description, image, id } =
@@ -53,7 +53,7 @@ export default function CabinRow({ cabin }) {
     });
   }
   return (
-    <Table.Row>
+    <Table.Row delay={delay}>
       <Img src={image} alt={name} />
       <Cabin>{name}</Cabin>
       <div>Fits up to {maxCapacity} guests</div>

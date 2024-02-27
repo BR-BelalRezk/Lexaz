@@ -32,3 +32,5 @@ export const navbar = [
     icon: HiOutlineCog6Tooth,
   },
 ];
+
+export const PAGE_SIZE = 5;

@@ -4,8 +4,8 @@ import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
-import { AnimatePresence, motion } from "framer-motion";
-const StyledModal = styled.div`
+import { motion } from "framer-motion";
+const StyledModal = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -76,15 +76,19 @@ function Window({ children, name }) {
   const { ref } = useOutsideClick(close);
   if (openName !== name) return;
   return createPortal(
-    <AnimatePresence>
-      <Overlay />
-      <StyledModal ref={ref}>
+    <Overlay>
+      <StyledModal
+        ref={ref}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
         <Button onClick={close}>
           <HiXMark />
         </Button>
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
-    </AnimatePresence>,
+    </Overlay>,
     document.body
   );
 }

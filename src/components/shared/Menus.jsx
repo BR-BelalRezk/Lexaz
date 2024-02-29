@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import styled from "styled-components";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { motion } from "framer-motion";
 
 const Menu = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const StyledToggle = styled.button`
   }
 `;
 
-const StyledList = styled.ul`
+const StyledList = styled(motion.ul)`
   position: absolute;
 
   background-color: var(--color-grey-0);
@@ -103,7 +104,13 @@ function List({ id, children }) {
   const { ref } = useOutsideClick(close, false);
   if (openID !== id) return null;
   return createPortal(
-    <StyledList ref={ref} position={position}>
+    <StyledList
+      ref={ref}
+      position={position}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ type: "spring", stiffness: 100, damping: 10 }}
+    >
       {children}
     </StyledList>,
     document.body

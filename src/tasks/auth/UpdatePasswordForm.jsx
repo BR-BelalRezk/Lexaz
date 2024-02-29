@@ -1,10 +1,9 @@
 import { useForm } from "react-hook-form";
-import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import FormRow from "../../ui/FormRow";
-import Input from "../../ui/Input";
-
-import { useUpdateUser } from "./useUpdateUser";
+import Form from "../../components/shared/Form";
+import FormRow from "../../components/shared/FormRow";
+import Input from "../../components/shared/Input";
+import Button from "../../components/shared/Button";
+import { useUpdateUser } from "../../hooks/useUpdateUser";
 
 function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
@@ -19,7 +18,7 @@ function UpdatePasswordForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
-        label="Password (min 8 characters)"
+        label="New password (min 8 chars)"
         error={errors?.password?.message}
       >
         <Input
@@ -28,7 +27,7 @@ function UpdatePasswordForm() {
           autoComplete="current-password"
           disabled={isUpdating}
           {...register("password", {
-            required: "This field is required",
+            required: "Provide a new password please.",
             minLength: {
               value: 8,
               message: "Password needs a minimum of 8 characters",
@@ -47,7 +46,7 @@ function UpdatePasswordForm() {
           id="passwordConfirm"
           disabled={isUpdating}
           {...register("passwordConfirm", {
-            required: "This field is required",
+            required: "Confirm the password please.",
             validate: (value) =>
               getValues().password === value || "Passwords need to match",
           })}

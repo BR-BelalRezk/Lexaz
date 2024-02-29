@@ -10,7 +10,7 @@ const LoginLayout = styled.main`
   align-content: center;
   justify-content: center;
   gap: 3.5rem;
-  background-color: var(--color-gray-50);
+  background-color: var(--color-grey-50);
 `;
 
 export default function Login() {

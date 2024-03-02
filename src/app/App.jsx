@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 import Bookings from "../pages/Bookings";
 import Cabins from "../pages/Cabins";
@@ -23,7 +23,6 @@ const querClient = new QueryClient({
   },
 });
 export default function App() {
-  const location = useLocation();
   return (
     <AppTheme>
       <QueryClientProvider client={querClient}>
@@ -48,7 +47,7 @@ export default function App() {
             },
           }}
         />
-        <Routes location={location} key={location.pathname}>
+        <Routes>
           <Route
             element={
               <ProtectedRoutes>

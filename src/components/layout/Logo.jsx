@@ -9,7 +9,8 @@ const Img = styled.img`
 `;
 export default function Logo() {
   const { isDark } = useTheme();
-  const src = isDark ? "/dark.svg" : "/light.svg";
+  // const src = isDark ? "/dark.svg" : "/light.svg";
+  const src = "/logo.png";
   return (
     <Figure>
       <Img src={src} alt="logo" />

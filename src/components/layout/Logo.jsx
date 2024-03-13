@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import useTheme from "../../hooks/useTheme";
 const Figure = styled.figure`
   text-align: center;
 `;
@@ -8,11 +7,9 @@ const Img = styled.img`
   width: auto;
 `;
 export default function Logo() {
-  const { isDark } = useTheme();
-  const src = isDark ? "/dark.svg" : "/light.svg";
   return (
     <Figure>
-      <Img src={src} alt="logo" />
+      <Img src={'/lexaz.svg} alt="logo" />
     </Figure>
   );
 }

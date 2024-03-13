@@ -9,7 +9,7 @@ const Img = styled.img`
 export default function Logo() {
   return (
     <Figure>
-      <Img src={"/lexaz.svg"} alt="logo" />
+      <Img src={"/title.svg"} alt="logo" />
     </Figure>
   );
 }
